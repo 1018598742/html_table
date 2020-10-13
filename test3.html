@@ -212,7 +212,8 @@ function AddRow(table, index){
   console.log("startIndex="+startIndex);
   console.log("endIndx="+endIndex);
   table.tBodies[0].appendChild(newRow);    
-  newRow.cells[0].innerHTML=endIndex-startIndex;  
+  // newRow.cells[1].innerHTML=endIndex-startIndex;  
+  newRow.cells[1].innerHTML=endIndex;  
   SetRowCanEdit(newRow);    
   return newRow;    
     
