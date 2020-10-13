@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>动态表格</title>
+</head>
+<body>
+    <button type="button" onclick="refresh()">刷新</button>
+    <button type="button" onclick="checkAll()">全选</button>
+    <button type="button" onclick="uncheckAll()">不选</button>
+    <button type="button" onclick="addCell()">添加</button>
+    <button type="button" onclick="copyCell()">拷贝</button>
+    <button type="button" onclick="copyCell();delCell()">移动</button>
+    <button type="button" onclick="delCell()">删除</button>
+
+    <table id="table1" border="1" width="320">
+        <tr>
+            <td width="20"><input type="checkbox" /></td>
+            <td width="100">1</td>
+            <td width="100">1</td>
+            <td width="100">1</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>2</td>
+            <td>2</td>
+            <td>2</td>
+        </tr>
+    </table>
+    <br />
+    <table id="table2" border="1" width="320">
+        <tr>
+            <td width="20"><input type="checkbox" /></td>
+            <td width="100">你好！</td>
+            <td width="100">你好！</td>
+            <td width="100">你好！</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" /></td>
+            <td>你坏！</td>
+            <td>你好！</td>
+            <td>你好！</td>
+        </tr>
+    </table>
+    <form name="frmRefresh" action="dynamic_table.html">
+    </form>
+
+<script type="text/javascript">
+    function addCell(){ //添加新的单元格
+        //插入新的一行
+        var oTargetRow = document.all("table1").insertRow();
+        for (var k = 0; k < document.getElementById("table1").rows[0].cells.length; k++) {
+            var oCell = oTargetRow.insertCell();
+            if (parseInt(k) === 0) {
+                oCell.innerHTML = "<input type='checkbox'>";
+            }
+            else {
+                oCell.innerHTML = k;
+            }
+        }
+    }
+
+    function checkAll(){ //选中所有的单元格
+        var eInput = document.all("table1").getElementsByTagName("input");
+        for (var i = 0; i < eInput.length; i++) {
+            eInput[i].checked = true;
+        }
+    }
+
+    function uncheckAll() {
+        var eInput = document.all("table1").getElementsByTagName("input");
+        for (var i = 0; i < eInput.length; i++) {
+            eInput[i].checked = false;
+        }
+    }
+
+    function copyCell(){ //拷贝单元格
+        var eInput = document.all("table1").getElementsByTagName("input");
+        var oTargetRow = null;
+        for (var i = 0; i < eInput.length; i++) {
+            if (eInput[i].checked) {
+                var oSourceRow = eInput[i].parentElement.parentElement;
+                //插入新的一行
+                oTargetRow = document.all("table2").insertRow();
+                for (var k = 0; k < document.all("table1").rows[0].cells.length; k++) {
+                    var oCell = oTargetRow.insertCell();
+                    oCell.innerHTML = oSourceRow.cells[k].innerHTML;
+                }
+            }
+        }
+    }
+
+    function delCell(){//删除单元格
+        var eInput = document.all("table1").getElementsByTagName("input");
+        for (var i = eInput.length - 1; i >= 0; i--) {
+            if (eInput[i].checked) {
+                var oSourceRow = eInput[i].parentElement.parentElement;
+                document.all("table1").deleteRow(oSourceRow.rowIndex);
+            }
+        }
+    }
+
+    function refresh(){ //刷新
+        frmRefresh.submit();
+    }
+
+</script>
+</body>
+</html>

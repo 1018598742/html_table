@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>动态表格</title>
+    <style>
+		.define-table{
+			border-collapse:collapse;
+			border-spacing:0;
+			border-left:1px solid #888;
+			border-top:1px solid #888;
+		}
+		.define-table th,.define-table td{
+			border-right:1px solid #888;
+			border-bottom:1px solid #888;
+			padding:5px 15px;
+		}
+		.define-table th{
+			font-weight:bold;background:#ccc;
+		}	
+		</style>
+</head>
+<body>
+	 <table class="define-table" id="table2" border="1" width="320">
+	 	<tr>
+	 		<th width="20"><input type="checkbox" /></th>
+  			<th>姓名</th>
+  			<th>电话</th>
+  			<th>电话</th>
+		</tr>
+        <tr>
+            <td width="20"><input type="checkbox" /></td>
+            <td width="100" type="text">你好！</td>
+            <td width="100">你好！</td>
+            <td width="100">你好！</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" /></td>
+            <td>你坏！</td>
+            <td>你好！</td>
+            <td>你好！</td>
+        </tr>
+    </table>
+</body>
+</html>
